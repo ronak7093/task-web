@@ -132,7 +132,7 @@ const Task = () => {
         setEditIndex(id)
     }
 
-    const handleDelete = async (id) => {
+    const handleDelete = async (id) => {        
         // const updatedTasks = submit.filter((item) => item.id !== id)
         // setSubmit(updatedTasks)
         // localStorage.removeItem('task')
@@ -551,7 +551,7 @@ const Task = () => {
                                     </button>
                                     <button
                                         className="delete"
-                                        onClick={() => handleDelete(item, item._id)}
+                                        onClick={() => handleDelete(item._id)}
                                     >
                                         Delete
                                     </button>
