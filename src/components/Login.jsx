@@ -80,6 +80,15 @@ const Login = () => {
   return (
     <>
       <style>{`
+            body {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              height: 100vh;
+              margin: 0;
+              background: linear-gradient(135deg,rgb(76, 107, 241) 0%, #764ba2 100%);
+              font-family: Arial, sans-serif;
+            }
             .container {
               max-width: 600px;
               margin: 2rem auto;

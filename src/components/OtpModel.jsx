@@ -140,6 +140,13 @@ const OtpModel = () => {
     return (
         <>
             <style>{`
+            body {
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg,rgb(76, 107, 241) 0%, #764ba2 100%);
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+           }
             .container {
               max-width: 600px;
               margin: 2rem auto;

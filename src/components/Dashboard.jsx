@@ -85,6 +85,19 @@ const Dashboard = () => {
   return (
     <>
       <style>{`
+          body {
+          margin: 0;
+          padding: 20px;
+          background: linear-gradient(135deg, rgb(76, 107, 241) 0%, #764ba2 100%);
+          min-height: 100vh;
+          font-family: Arial, sans-serif;
+          display: flex;
+          justify-content: center;  
+          align-items: center;     
+          text-align: center;       
+          flex-direction: column;  
+          overflow:hidden
+        }
         .container {
           max-width: 600px;
           margin: 2rem auto;
@@ -142,7 +155,7 @@ const Dashboard = () => {
 
       <div className="container">
         <div className="header">
-          <span>👋 Welcome</span>
+          <span style={{ marginRight: "100px" }}>👋 Welcome</span>
           <div style={{ display: "flex", gap: "1rem" }}>
             <button className="task-button" onClick={() => navigate('/task')}>Task</button>
             < Logout />

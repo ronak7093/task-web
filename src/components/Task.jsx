@@ -23,6 +23,9 @@ const Task = () => {
     const [sortOption, setSortOption] = useState('All');
     const navigate = useNavigate();
 
+    const handleBack = () => {
+        navigate(-1);
+    };
 
     useEffect(() => {
         const token = localStorage.getItem('token');
@@ -40,6 +43,16 @@ const Task = () => {
             } catch (error) {
                 if (error.code === 400) {
                     setError(error.message);
+                    toast.error(error.message, {
+                        style: {
+                            border: '1px solid #007bff',
+                            padding: '16px',
+                            color: '#007bff',
+                            background: '#e6f0ff',
+                            fontWeight: 'bold',
+                            fontSize: "15px"
+                        }
+                    })
                 }
             }
         }
@@ -70,7 +83,16 @@ const Task = () => {
             try {
                 const data = await updateTask(token, editIndex, updatedItem);
                 if (data.code === 200) {
-                    toast.success(data.message);
+                    toast.success(data.message, {
+                        style: {
+                            border: '1px solid #007bff',
+                            padding: '16px',
+                            color: '#007bff',
+                            background: '#e6f0ff',
+                            fontWeight: 'bold',
+                            fontSize: "15px"
+                        }
+                    });
 
                     const updated = submit.map((item) =>
                         item._id === editIndex ? { ...item, ...updatedItem } : item
@@ -112,7 +134,16 @@ const Task = () => {
                 setSubmit(updateTask)
                 // localStorage.setItem('task', JSON.stringify(updateTask));
                 // setSubmit([...submit, updateTask])
-                toast.success(data.message)
+                toast.success(data.message, {
+                    style: {
+                        border: '1px solid #007bff',
+                        padding: '16px',
+                        color: '#007bff',
+                        background: '#e6f0ff',
+                        fontWeight: 'bold',
+                        fontSize: "15px"
+                    }
+                })
             }
             // setSubmit([...submit, newTask])
             // localStorage.setItem('task', JSON.stringify([...submit, newTask]));
@@ -132,7 +163,7 @@ const Task = () => {
         setEditIndex(id)
     }
 
-    const handleDelete = async (id) => {        
+    const handleDelete = async (id) => {
         // const updatedTasks = submit.filter((item) => item.id !== id)
         // setSubmit(updatedTasks)
         // localStorage.removeItem('task')
@@ -144,7 +175,16 @@ const Task = () => {
 
         const data = await deleteTask(token, id);
         if (data.code === 200) {
-            toast.success(data.message);
+            toast.success(data.message, {
+                style: {
+                    border: '1px solid #007bff',
+                    padding: '16px',
+                    color: '#007bff',
+                    background: '#e6f0ff',
+                    fontWeight: 'bold',
+                    fontSize: "15px"
+                }
+            });
             setSubmit((prev) => prev.filter((item) => item._id !== id))
         }
     }
@@ -175,7 +215,16 @@ const Task = () => {
                 return item;
             });
             setSubmit(updatedTasks);
-            toast.success(data.message)
+            toast.success(data.message, {
+                style: {
+                    border: '1px solid #007bff',
+                    padding: '16px',
+                    color: '#007bff',
+                    background: '#e6f0ff',
+                    fontWeight: 'bold',
+                    fontSize: "15px"
+                }
+            })
         }
     }
 
@@ -195,6 +244,16 @@ const Task = () => {
                 setSubmit(response.data.taskData);
             } else {
                 setError(response.message);
+                toast.error(response.message, {
+                    style: {
+                        border: '1px solid #007bff',
+                        padding: '16px',
+                        color: '#007bff',
+                        background: '#e6f0ff',
+                        fontWeight: 'bold',
+                        fontSize: "15px"
+                    }
+                })
             }
         } catch (error) {
             console.error('Error fetching tasks by status:', error);
@@ -362,6 +421,14 @@ const Task = () => {
     return (
         <>
             <style>{`
+            body {
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg,rgb(76, 107, 241) 0%, #764ba2 100%);
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+            overflow:hidden
+        }
             .container {
               max-width: 600px;
               margin: 2rem auto;
@@ -390,6 +457,11 @@ const Task = () => {
             }
             .header button:hover {
             background-color: #b02a37;
+            }
+            
+            .back-button img {
+              height:30px;
+              width:30px;
             }
             .form input, .form select {
               width: 100%;
@@ -480,10 +552,15 @@ const Task = () => {
           `}</style>
 
             <div className="container">
+                <div className="header-left">
+                    <button className="back-button" onClick={handleBack}>
+                        <img src="/public/icons8-back-button.gif" alt="back" />
+                    </button>
+                </div>
                 < Toaster position="top-right" />
                 <div className="header">
+
                     <span>📝 Task Manager</span>
-                    {/* <button onClick={handleLogout}>Logout</button> */}
                     < Logout />
                 </div>
 
